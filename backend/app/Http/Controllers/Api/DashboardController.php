@@ -18,12 +18,10 @@ class DashboardController extends Controller
         $slaBreached = 2; // hardcoded/mock value for now
 
         return response()->json([
-            'data' => [
-                'total_tickets' => $totalTickets,
-                'open_tickets' => $openTickets,
-                'resolved_tickets' => $resolvedTickets,
-                'sla_breached' => $slaBreached,
-            ],
+            'total_tickets' => $totalTickets,
+            'open_tickets' => $openTickets,
+            'resolved_tickets' => $resolvedTickets,
+            'sla_breached' => $slaBreached,
         ]);
     }
 }
