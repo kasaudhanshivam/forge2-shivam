@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, NavLink } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import Dashboard from './pages/Dashboard';
 import TicketBoard from './pages/TicketBoard';
 import TicketDetail from './pages/TicketDetail';
 
@@ -21,6 +22,32 @@ function Layout() {
           </div>
           {user && (
             <div className="flex items-center gap-4">
+              <nav className="hidden sm:flex items-center gap-1 mr-2">
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    `px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                      isActive
+                        ? 'bg-blue-50 text-blue-700'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                    }`
+                  }
+                >
+                  Dashboard
+                </NavLink>
+                <NavLink
+                  to="/tickets"
+                  className={({ isActive }) =>
+                    `px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                      isActive
+                        ? 'bg-blue-50 text-blue-700'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                    }`
+                  }
+                >
+                  Tickets
+                </NavLink>
+              </nav>
               <span className="text-sm text-slate-600 hidden sm:inline">
                 {user.name} · <span className="capitalize">{user.role}</span>
               </span>
@@ -38,6 +65,14 @@ function Layout() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/tickets"
             element={
@@ -57,7 +92,7 @@ function Layout() {
           <Route
             path="/"
             element={
-              user ? <Navigate to="/tickets" replace /> : <Navigate to="/login" replace />
+              user ? <Navigate to="/dashboard" replace /> : <Navigate to="/login" replace />
             }
           />
         </Routes>

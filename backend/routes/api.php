@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +31,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/tickets/{ticket}/comments', [CommentController::class, 'index']);
     Route::post('/tickets/{ticket}/comments', [CommentController::class, 'store']);
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
+
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 });
