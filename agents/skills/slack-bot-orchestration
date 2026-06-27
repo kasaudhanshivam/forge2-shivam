@@ -1,0 +1,20 @@
+---
+name: slack-bot-orchestration
+description: Post a What I Did / What's Left / What Needs Your Call update to Slack and manage dual-agent delegation routing.
+---
+When asked for a status update or when delegating tasks to OpenClaw, you must ensure strict visibility in Slack:
+
+1. FOR YOU (Hermes): Always use `hermes send --to "slack:C0BCG399VK4"` to announce the task in #agent-coder before delegating.
+2. FOR OPENCLAW: Always append this EXACT instruction to the end of your `delegate_task` payload so OpenClaw uses the proper fallback:
+
+"CRITICAL: To post your status report to #agent-coder, you MUST use your terminal to run this exact curl command. Replace the text field with your actual status report, but keep the structure exactly like this:
+
+curl -s -o /tmp/openclaw_status.json -w \"%{http_code}\" -X POST 'https://slack.com/api/chat.postMessage' \
+-H \"Authorization: Bearer $SLACK_BOT_TOKEN\" \
+-H \"Content-type: application/json; charset=utf-8\" \
+--data '{
+  \"channel\": \"C0BCG399VK4\",
+  \"text\": \"*OpenClaw Status Report*\\n*What I Did:* [your actual actions]\\n*What is Left:* [pending items]\\n*What Needs Your Call:* [any blockers/human decisions]\"
+}'
+
+Execute this curl command yourself before returning."
