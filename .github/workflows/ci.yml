@@ -41,6 +41,7 @@ jobs:
     - name: Run Migrations & Tests
       run: |
         cd backend
+        php artisan key:generate
         php artisan migrate --env=testing --database=mysql --force
         php artisan test
       env:
