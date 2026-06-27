@@ -18,7 +18,7 @@
     "mode": "local",
     "auth": {
       "mode": "token",
-      "token": "3ef403330e1fee68d90213cf594ac7c9e33562fb8e097bd1"
+      "token": "${GATEWAY_TOKEN}"
     },
     "port": 18789,
     "bind": "loopback",
@@ -120,7 +120,7 @@
     "providers": {
       "eastrouter": {
         "baseUrl": "https://api.eastrouter.com/v1",
-        "apiKey": ${EASTROUTER_API_KEY},
+        "apiKey": "${EASTROUTER_API_KEY}",
         "api": "openai-completions",
         "models": [
           {
