@@ -2,6 +2,8 @@
 
 A multi-tenant SaaS ticketing system built with **Laravel 11**, **React 19**, **Tailwind CSS**, and **MySQL**. Designed for customer support teams with role-based access control (Admin, Agent, Customer) and full organization-based data isolation.
 
+**Live URL:** https://pulsedesk.shivamkasaudhan.dev/ (Vercel)
+
 ---
 
 ## Tech Stack
